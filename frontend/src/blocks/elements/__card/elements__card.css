@@ -1,0 +1,17 @@
+.elements__card {
+  position: relative;
+  margin: 0;
+  background-color: #fff;
+  border-radius: 10px;
+  overflow: hidden;
+}
+
+.elements__card:last-child {
+  margin-bottom: 0;
+}
+
+@media screen and (max-width: 470px) {
+  .elements__card {
+    margin-bottom: 20px;
+  }
+}

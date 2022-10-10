@@ -1,0 +1,10 @@
+.profile__info {
+  color: #fff;
+  display: flex;
+}
+
+@media screen and (max-width: 700px) {
+  .profile__info {
+    display: block;
+  }
+}

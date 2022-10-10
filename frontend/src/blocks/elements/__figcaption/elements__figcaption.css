@@ -1,0 +1,7 @@
+.elements__figcaption {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 25px 20px 31px;
+  margin: 0;
+}

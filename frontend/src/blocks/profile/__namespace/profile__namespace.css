@@ -1,0 +1,19 @@
+.profile__namespace {
+  align-self: center;
+
+  display: flex;
+  justify-content: center;
+}
+
+@media screen and (max-width: 700px) {
+  .profile__namespace {
+    margin: 0 auto 36px;
+    text-align: center;
+  }
+}
+
+@media screen and (max-width: 380px) {
+  .profile__namespace {
+    max-width: 282px;
+  }
+}

@@ -1,0 +1,16 @@
+.elements__like {
+  padding: 0;
+  margin: 0;
+  width: 22px;
+  height: 19px;
+  background: url(../../../images/like-disabled.svg) no-repeat center/contain;
+  border: none;
+  align-self: center;
+  transition: 0.3s;
+  cursor: pointer;
+}
+
+.elements__like:hover {
+  opacity: 0.5;
+  transform: scale(1.1);
+}

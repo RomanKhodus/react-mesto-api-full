@@ -1,0 +1,20 @@
+.signing__input {
+  font-family: "Inter", "Arial", sans-serif;
+  background-color: #000;
+  font-style: normal;
+  font-weight: 400;
+  font-size: 14px;
+  line-height: 17px;
+  display: block;
+  width: 100%;
+  height: 27px;
+  margin: 30px 0 0;
+  padding: 0;
+  border: none;
+  border-bottom: 2px solid rgba(204, 204, 204, 1);
+  color: #cccccc;
+}
+
+.signing__input::placeholder {
+  color: #cccccc;
+}
