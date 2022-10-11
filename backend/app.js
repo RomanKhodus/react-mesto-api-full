@@ -30,6 +30,22 @@ mongoose.connect('mongodb://localhost:27017/mestodb', {
 
 app.use(bodyParser.json());
 
+const allowedCors = [
+  'https://praktikum.tk',
+  'http://praktikum.tk',
+  'api.place.students.nomoredomains.icu',
+  'localhost:3000',
+];
+
+app.use((req, res, next) => {
+  const { origin } = req.headers; // Сохраняем источник запроса в переменную origin
+  // проверяем, что источник запроса есть среди разрешённых
+  if (allowedCors.includes(origin)) {
+    return res.header('Access-Control-Allow-Origin', origin);
+  }
+  return next();
+});
+
 app.use(requestLogger); // подключаем логгер запросов
 
 // Тестирование - краштест. Необходимо будет удалить после прохождения ревью.
