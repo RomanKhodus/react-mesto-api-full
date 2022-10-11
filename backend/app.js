@@ -12,15 +12,17 @@ const { REG_EXP_URL } = require('./utils/constants');
 const NotFoundError = require('./errors/not-found-errors');
 const { requestLogger, errorLogger } = require('./middlewares/logger');
 
+require('dotenv').config();
+
+const { PORT = 3000 } = process.env;
+
+const app = express();
+
 process.on('uncaughtException', (err, origin) => {
   console.log(
     `${origin} ${err.name} c текстом ${err.message} не была обработана. Обратите внимание!`,
   );
 });
-
-const { PORT = 3000 } = process.env;
-
-const app = express();
 
 mongoose.connect('mongodb://localhost:27017/mestodb', {
   useNewUrlParser: true,
