@@ -9,6 +9,27 @@ const ConflictError = require('../errors/сonflict-errors');
 
 const { NODE_ENV, JWT_SECRET } = process.env;
 
+module.exports.createUser = (req, res, next) => {
+  const {
+    name, about, avatar, email, password,
+  } = req.body;
+  bcrypt.hash(password, 10).then((hash) => {
+    User.create({
+      name, about, avatar, email, password: hash,
+    })
+      .then((user) => res.status(200).send(user.toObject()))
+      .catch((err) => {
+        if (err.code === 11000) {
+          return next(new ConflictError('Такой пользователь уже существует'));
+        }
+        if (err.name === 'ValidationError') {
+          return next(new BadRequestError('Некорректные данные'));
+        }
+        return next(new InternalServerError('Сервер столкнулся с неожиданной ошибкой, которая помешала ему выполнить запрос'));
+      });
+  });
+};
+
 module.exports.login = (req, res, next) => {
   const { email, password } = req.body;
 
@@ -35,27 +56,6 @@ module.exports.getProfile = (req, res, next) => {
     .catch(() => {
       next(new InternalServerError('Сервер столкнулся с неожиданной ошибкой, которая помешала ему выполнить запрос'));
     });
-};
-
-module.exports.createUser = (req, res, next) => {
-  const {
-    name, about, avatar, email, password,
-  } = req.body;
-  bcrypt.hash(password, 10).then((hash) => {
-    User.create({
-      name, about, avatar, email, password: hash,
-    })
-      .then((user) => res.status(200).send(user.toObject()))
-      .catch((err) => {
-        if (err.code === 11000) {
-          return next(new ConflictError('Такой пользователь уже существует'));
-        }
-        if (err.name === 'ValidationError') {
-          return next(new BadRequestError('Некорректные данные'));
-        }
-        return next(new InternalServerError('Сервер столкнулся с неожиданной ошибкой, которая помешала ему выполнить запрос'));
-      });
-  });
 };
 
 module.exports.getUsers = (req, res, next) => {

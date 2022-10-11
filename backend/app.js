@@ -32,6 +32,13 @@ app.use(bodyParser.json());
 
 app.use(requestLogger); // подключаем логгер запросов
 
+// Тестирование - краштест. Необходимо будет удалить после прохождения ревью.
+app.get('/crash-test', () => {
+  setTimeout(() => {
+    throw new Error('Сервер сейчас упадёт');
+  }, 0);
+});
+
 app.post('/signin', celebrate({
   body: Joi.object().keys({
     email: Joi.string().required().email({ tlds: { allow: false } }),
