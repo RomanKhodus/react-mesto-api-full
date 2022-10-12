@@ -31,8 +31,8 @@ mongoose.connect('mongodb://localhost:27017/mestodb', {
 app.use(bodyParser.json());
 
 const allowedCors = [
-  'https://praktikum.tk',
-  'http://praktikum.tk',
+  // 'https://praktikum.tk',
+  // 'http://praktikum.tk',
   'https://api.place.students.nomoredomains.icu',
   'http://api.place.students.nomoredomains.icu',
   'https://place.students.nomoredomains.icu',
@@ -44,8 +44,11 @@ app.use((req, res, next) => {
   const { origin } = req.headers; // Сохраняем источник запроса в переменную origin
   // проверяем, что источник запроса есть среди разрешённых
   if (allowedCors.includes(origin)) {
+    console.log('Естьт такой заголовок! ОК', origin);
     return res.header('Access-Control-Allow-Origin', origin);
   }
+  res.header('Access-Control-Allow-Origin', '*');
+  console.log('Такого заголовка не нашлось!', origin);
   return next();
 });
 
