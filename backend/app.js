@@ -33,7 +33,10 @@ app.use(bodyParser.json());
 const allowedCors = [
   'https://praktikum.tk',
   'http://praktikum.tk',
-  'api.place.students.nomoredomains.icu',
+  'https://api.place.students.nomoredomains.icu',
+  'http://api.place.students.nomoredomains.icu',
+  'https://place.students.nomoredomains.icu',
+  'http://place.students.nomoredomains.icu',
   'localhost:3000',
 ];
 
