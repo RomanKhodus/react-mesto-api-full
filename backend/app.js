@@ -35,6 +35,7 @@ const allowedCors = [
   // 'http://praktikum.tk',
   'https://api.place.students.nomoredomains.icu',
   'http://api.place.students.nomoredomains.icu',
+  'http://api.place.students.nomoredomains.icu/users/me',
   'https://place.students.nomoredomains.icu',
   'http://place.students.nomoredomains.icu',
   'localhost:3000',
