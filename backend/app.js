@@ -31,11 +31,6 @@ mongoose.connect('mongodb://localhost:27017/mestodb', {
 app.use(bodyParser.json());
 
 const allowedCors = [
-  // 'https://praktikum.tk',
-  // 'http://praktikum.tk',
-  'https://api.place.students.nomoredomains.icu',
-  'http://api.place.students.nomoredomains.icu',
-  'http://api.place.students.nomoredomains.icu/users/me',
   'https://place.students.nomoredomains.icu',
   'http://place.students.nomoredomains.icu',
   'localhost:3000',
@@ -48,7 +43,6 @@ app.use((req, res, next) => {
     console.log('Естьт такой заголовок! ОК', origin);
     return res.header('Access-Control-Allow-Origin', origin);
   }
-  res.header('Access-Control-Allow-Origin', '*');
   console.log('Такого заголовка не нашлось!', origin);
   return next();
 });
