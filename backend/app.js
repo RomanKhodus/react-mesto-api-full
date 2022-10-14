@@ -36,7 +36,7 @@ const allowedCors = [
   'localhost:3000',
 ];
 
-app.use((req, res, next) => {
+app.use(function (req, res, next) {
   const { origin } = req.headers; // Сохраняем источник запроса в переменную origin
   // проверяем, что источник запроса есть среди разрешённых
   if (allowedCors.includes(origin)) {

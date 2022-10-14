@@ -32,11 +32,11 @@ module.exports.createUser = (req, res, next) => {
 
 module.exports.login = (req, res, next) => {
   const { email, password } = req.body;
+  console.log({ Заголовки: req.headers });
 
   User.findUserByCredentials(email, password)
     .then((user) => {
       const token = jwt.sign({ _id: user._id }, NODE_ENV === 'production' ? JWT_SECRET : 'dev-secret', { expiresIn: '7d' });
-      localStorage.setItem('jwt', token);
       res.status(200).send({ jwt: token });
     })
     .catch(() => {
