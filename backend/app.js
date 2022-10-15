@@ -36,12 +36,15 @@ const allowedCors = [
   'localhost:3000',
 ];
 
-app.use(function (req, res, next) {
+app.use((req, res, next) => {
   const { origin } = req.headers; // Сохраняем источник запроса в переменную origin
   // проверяем, что источник запроса есть среди разрешённых
   if (allowedCors.includes(origin)) {
-    console.log('Естьт такой заголовок! ОК', origin);
-    return res.header('Access-Control-Allow-Origin', origin);
+    return res.header({
+      'Access-Control-Allow-Methods': ['GET', 'POST', 'PUT', 'PATCH', 'DELETE'],
+      'Access-Control-Allow-Credentials': true,
+      'Access-Control-Allow-Origin': origin,
+    });
   }
   console.log('Такого заголовка не нашлось!', origin);
   return next();
