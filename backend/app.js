@@ -33,20 +33,21 @@ app.use(bodyParser.json());
 const allowedCors = [
   'https://place.students.nomoredomains.icu',
   'http://place.students.nomoredomains.icu',
-  'localhost:3000',
+  'http://localhost:3000',
 ];
 
 app.use((req, res, next) => {
-  const { origin } = req.headers; // Сохраняем источник запроса в переменную origin
-  // проверяем, что источник запроса есть среди разрешённых
+  const { origin } = req.headers;
+
   if (allowedCors.includes(origin)) {
-    return res.header({
-      'Access-Control-Allow-Methods': ['GET', 'POST', 'PUT', 'PATCH', 'DELETE'],
-      'Access-Control-Allow-Credentials': true,
-      'Access-Control-Allow-Origin': origin,
-    });
+    res.header('Access-Control-Allow-Credentials', true);
+    res.header('Access-Control-Allow-Origin', origin);
   }
-  console.log('Такого заголовка не нашлось!', origin);
+  if (req.method === 'OPTIONS') {
+    res.header('Access-Control-Allow-Methods', 'GET, POST, PUT, HEAD, PATCH, DELETE');
+    res.header('Access-Control-Allow-Headers', req.headers['access-control-request-headers']);
+    return res.end();
+  }
   return next();
 });
 
