@@ -30,12 +30,14 @@ mongoose.connect('mongodb://localhost:27017/mestodb', {
 
 app.use(bodyParser.json());
 
+// Разрешенные адреса для CORS
 const allowedCors = [
   'https://place.students.nomoredomains.icu',
   'http://place.students.nomoredomains.icu',
-  'http://localhost:3000',
+  // 'http://localhost:3000',
 ];
 
+// Мидлвара для CORS. Проверяет заголовки и подставляет необходимые
 app.use((req, res, next) => {
   const { origin } = req.headers;
 
