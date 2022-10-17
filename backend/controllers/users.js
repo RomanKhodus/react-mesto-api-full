@@ -44,6 +44,7 @@ module.exports.login = (req, res, next) => {
       res.send({
         message: 'Авторизация прошла успешно',
         token,
+        user,
       });
     })
     .catch(() => {
