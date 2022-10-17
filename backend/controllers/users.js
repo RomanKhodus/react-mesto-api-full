@@ -59,7 +59,7 @@ module.exports.getProfile = (req, res, next) => {
       if (!user) {
         return next(new NotFoundError('Нет пользователя с таким id'));
       }
-      return res.status(200).send({ message: user });
+      return res.status(200).send({ user });
     })
     .catch(() => {
       next(new InternalServerError('Сервер столкнулся с неожиданной ошибкой, которая помешала ему выполнить запрос'));
