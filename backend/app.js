@@ -34,7 +34,8 @@ app.use(bodyParser.json());
 const allowedCors = [
   'https://place.students.nomoredomains.icu',
   'http://place.students.nomoredomains.icu',
-  // 'http://localhost:3000',
+  'http://localhost:3000',
+  'https://localhost:3000',
 ];
 
 // Мидлвара для CORS. Проверяет заголовки и подставляет необходимые

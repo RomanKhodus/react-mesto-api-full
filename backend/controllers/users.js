@@ -41,7 +41,10 @@ module.exports.login = (req, res, next) => {
         sameSite: 'none',
         secure: true,
       });
-      res.send({ message: 'Авторизация прошла успешно' });
+      res.send({
+        message: 'Авторизация прошла успешно',
+        token,
+      });
     })
     .catch(() => {
       next(new UnauthorizedError('Не авторизованный пользователь'));
