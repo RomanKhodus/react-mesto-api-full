@@ -35,6 +35,8 @@ const allowedCors = [
   'http://place.students.nomoredomains.icu',
   'http://localhost:3000',
   'https://localhost:3000',
+  'http://192.168.4.97:3000',
+  'https://192.168.4.97:3000',
 ];
 
 // Мидлвара для CORS. Проверяет заголовки и подставляет необходимые

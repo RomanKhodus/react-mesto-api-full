@@ -32,20 +32,17 @@ module.exports.createUser = (req, res, next) => {
 
 module.exports.login = (req, res, next) => {
   const { email, password } = req.body;
-
   User.findUserByCredentials(email, password)
     .then((user) => {
       const token = jwt.sign({ _id: user._id }, NODE_ENV === 'production' ? JWT_SECRET : 'dev-secret', { expiresIn: '7d' });
+      // Добавление токена в куки
       // res.cookie('jwt', token, {
       //   maxAge: 3600 * 24 * 7,
       //   sameSite: 'none',
       //   secure: true,
       // });
-      res.send({
-        message: 'Авторизация прошла успешно',
-        token,
-        user,
-      });
+      console.log('login прошел, на выходе token:', token);
+      res.send({ token });
     })
     .catch(() => {
       next(new UnauthorizedError('Не авторизованный пользователь'));
