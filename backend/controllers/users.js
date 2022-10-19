@@ -51,13 +51,12 @@ module.exports.login = (req, res, next) => {
 
 module.exports.getProfile = (req, res, next) => {
   const userId = req.user._id;
-
   User.findById(userId)
     .then((user) => {
       if (!user) {
         return next(new NotFoundError('Нет пользователя с таким id'));
       }
-      return res.status(200).send({ user });
+      return res.status(200).send(user);
     })
     .catch(() => {
       next(new InternalServerError('Сервер столкнулся с неожиданной ошибкой, которая помешала ему выполнить запрос'));
@@ -97,7 +96,7 @@ module.exports.setProfile = (req, res, next) => {
       if (!user) {
         return next(new NotFoundError('Нет пользователя с таким id'));
       }
-      return res.status(200).send({ data: user });
+      return res.status(200).send({ user });
     })
     .catch((err) => {
       if (err.name === 'ValidationError') {
@@ -116,7 +115,7 @@ module.exports.setAvatar = (req, res, next) => {
       if (!user) {
         return next(new NotFoundError('Нет пользователя с таким id'));
       }
-      return res.status(200).send({ data: user });
+      return res.status(200).send({ user });
     })
     .catch((err) => {
       if (err.name === 'ValidationError') {
