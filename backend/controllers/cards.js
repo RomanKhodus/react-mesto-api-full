@@ -10,7 +10,10 @@ module.exports.createCard = (req, res, next) => {
 
   Card.create({ name, link, owner })
     .then((card) => {
+<<<<<<< HEAD
       console.log(card);
+=======
+>>>>>>> 466e20e782797034767ff1fff1744f7377374cfd
       res.status(200).send(card);
     })
     .catch((err) => {
