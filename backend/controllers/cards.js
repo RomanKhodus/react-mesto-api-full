@@ -63,7 +63,7 @@ module.exports.likeCard = (req, res, next) => Card.findByIdAndUpdate(
     if (!card) {
       return next(new NotFoundError('такой карточки нет'));
     }
-    return res.status(200).send({ message: card });
+    return res.status(200).send(card);
   })
   .catch((err) => {
     if (err.name === 'CastError') {
