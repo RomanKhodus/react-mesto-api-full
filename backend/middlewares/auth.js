@@ -19,7 +19,5 @@ module.exports = (req, res, next) => {
   }
 
   req.user = payload;
-  console.log('на выходе auth', payload);
-
   return next();
 };

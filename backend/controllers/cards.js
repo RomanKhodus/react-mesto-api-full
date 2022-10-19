@@ -10,7 +10,8 @@ module.exports.createCard = (req, res, next) => {
 
   Card.create({ name, link, owner })
     .then((card) => {
-      res.status(200).send({ data: card });
+      console.log(card);
+      res.status(200).send(card);
     })
     .catch((err) => {
       if (err.name === 'ValidationError') {
@@ -63,7 +64,7 @@ module.exports.likeCard = (req, res, next) => Card.findByIdAndUpdate(
     if (!card) {
       return next(new NotFoundError('такой карточки нет'));
     }
-    return res.status(200).send({ message: card });
+    return res.status(200).send(card);
   })
   .catch((err) => {
     if (err.name === 'CastError') {
@@ -81,7 +82,7 @@ module.exports.dislikeCard = (req, res, next) => Card.findByIdAndUpdate(
     if (!user) {
       return next(new NotFoundError('такой карточки нет'));
     }
-    return res.status(200).send({ message: user });
+    return res.status(200).send(user);
   })
   .catch((err) => {
     if (err.name === 'CastError') {
