@@ -39,8 +39,6 @@ const allowedCors = [
   'https://192.168.4.97:3000',
 ];
 
-// Куки парсер
-
 // Мидлвара для CORS. Проверяет заголовки и подставляет необходимые
 app.use((req, res, next) => {
   const { origin } = req.headers;

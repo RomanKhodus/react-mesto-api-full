@@ -36,11 +36,11 @@ module.exports.login = (req, res, next) => {
     .then((user) => {
       const token = jwt.sign({ _id: user._id }, NODE_ENV === 'production' ? JWT_SECRET : 'dev-secret', { expiresIn: '7d' });
       // Добавление токена в куки
-      res.cookie('jwt', token, {
-        maxAge: 3600 * 24 * 7,
-        sameSite: 'none',
-        secure: true,
-      });
+      // res.cookie('jwt', token, {
+      //   maxAge: 3600 * 24 * 7,
+      //   sameSite: 'none',
+      //   secure: true,
+      // });
       res.send({ token });
     })
     .catch(() => {
