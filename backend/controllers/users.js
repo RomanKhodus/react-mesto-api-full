@@ -2,7 +2,7 @@ const bcrypt = require('bcryptjs');
 const jwt = require('jsonwebtoken');
 const User = require('../models/user');
 const NotFoundError = require('../errors/not-found-errors');
-const UnauthorizedError = require('../errors/unauthorized-errors');
+// const UnauthorizedError = require('../errors/unauthorized-errors');
 const BadRequestError = require('../errors/bad-request-error');
 const InternalServerError = require('../errors/Internal-server-errors');
 const ConflictError = require('../errors/сonflict-errors');
@@ -13,14 +13,16 @@ module.exports.createUser = (req, res, next) => {
   const {
     name, about, avatar, email, password,
   } = req.body;
+
+  // Хэшируем пароль
   bcrypt.hash(password, 10).then((hash) => {
     User.create({
       name, about, avatar, email, password: hash,
     })
-      .then((user) => res.status(200).send(user.toObject()))
+      .then((user) => res.status(201).send(user.toObject()))
       .catch((err) => {
         if (err.code === 11000) {
-          return next(new ConflictError('Такой пользователь уже существует'));
+          return next(new ConflictError('Такой пользователь уже существует!!!'));
         }
         if (err.name === 'ValidationError') {
           return next(new BadRequestError('Некорректные данные'));
@@ -41,10 +43,10 @@ module.exports.login = (req, res, next) => {
       //   sameSite: 'none',
       //   secure: true,
       // });
-      res.send({ token });
+      return res.send({ token });
     })
-    .catch(() => {
-      next(new UnauthorizedError('Не авторизованный пользователь'));
+    .catch((err) => {
+      next(new BadRequestError(err.message));
     });
 };
 

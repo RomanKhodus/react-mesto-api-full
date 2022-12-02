@@ -102,15 +102,10 @@ app.use('/', (req, res, next) => {
 
 // централизованный обработчик ошибок
 app.use((err, req, res, next) => {
-  const { statusCode = 500, message } = err;
+  const statusCode = err.statusCode || 500;
+  const message = statusCode === 500 ? 'На сервере вохникла непредвиденная ошибка' : err.message;
 
-  res
-    .status(statusCode)
-    .send({
-      message: statusCode === 500
-        ? 'На сервере произошла ошибка'
-        : message,
-    });
+  res.status(statusCode).send({ message });
   next();
 });
 
