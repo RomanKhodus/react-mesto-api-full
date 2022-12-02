@@ -31,8 +31,8 @@ app.use(bodyParser.json());
 
 // Разрешенные адреса для CORS
 const allowedCors = [
-  'https://place.students.nomoredomains.icu',
-  'http://place.students.nomoredomains.icu',
+  'https://place.nomoredomains.club',
+  'http://place.nomoredomains.club',
   'http://localhost:3000',
   'https://localhost:3000',
   'http://192.168.4.97:3000',
