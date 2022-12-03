@@ -7,5 +7,5 @@
 * Реализована авторизация, и Регистрация на сервисе. Есть возможность добавлять и удалять свои посты. Реализована возможность лайкать понравившиеся фото. Есть возмоность редактировать данные Пользователя.
   
 * IP 51.250.4.136
-* Frontend https://place.students.nomoredomains.icu
-* Backend https://api.place.students.nomoredomains.icu
+* Frontend https://place.nomoredomains.club
+* Backend https://api.place.nomoredomains.club
